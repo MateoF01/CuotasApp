@@ -10,20 +10,22 @@ import Foundation
 class MainViewModel: ObservableObject {
     @Published var productos: [Producto] = []
 
+    func guardarProductos(){
+        DataManager.shared.guardarProductos(productos)
+    }
+    
     func cargarProductos () {
         let productosCargados = DataManager.shared.cargarProductos()
         productos = productosCargados
     }
 
-    func agregarProducto(nombre: String, cuotasRestantes: Int, precioPorCuota: Double, nombreTarjeta: String) {
+    func agregarProducto(nombre: String, cuotasRestantes: Int, precioPorCuota: Int, nombreTarjeta: String) {
         let nuevoProducto = Producto(nombre: nombre, cuotasRestantes: cuotasRestantes, precioPorCuota: precioPorCuota, nombreTarjeta: nombreTarjeta)
         productos.append(nuevoProducto)
-        
-        DataManager.shared.guardarProductos(productos)
     }
 
-    func calcularTotalPorMes() -> Double {
-        var totalPorMes: Double = 0
+    func calcularTotalPorMes() -> Int {
+        var totalPorMes: Int = 0
 
         for producto in productos {
             totalPorMes += producto.precioPorCuota
@@ -45,8 +47,16 @@ class MainViewModel: ObservableObject {
         }
 
         productos = nuevosProductos
-        DataManager.shared.guardarProductos(productos)
-
     }
+    
+    func eliminarProducto(producto: Producto) {
+        // Implementa lógica para eliminar el producto de tu array
+        if let index = productos.firstIndex(where: { $0.id == producto.id }) {
+            productos.remove(at: index)
+        }
+    }
+    
+    
+
 }
 

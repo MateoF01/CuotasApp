@@ -25,7 +25,7 @@ struct AddProductoView: View {
                     TextField("Cuotas Restantes", text: $cuotasRestantes)
                         .keyboardType(.numberPad)
                     TextField("Precio por Cuota", text: $precioPorCuota)
-                        .keyboardType(.decimalPad)
+                        .keyboardType(.numberPad)
                 }
 
                 Section(header: Text("Información de la Tarjeta")) {
@@ -36,7 +36,7 @@ struct AddProductoView: View {
                     Button("Guardar Producto") {
                         viewModel.agregarProducto(nombre: nombreProducto,
                                                   cuotasRestantes: Int(cuotasRestantes) ?? 0,
-                                                  precioPorCuota: (Double(precioPorCuota) ?? 0.0).rounded(toPlaces: 2),
+                                                  precioPorCuota: Int(precioPorCuota) ?? 0,
                                                   nombreTarjeta: nombreTarjeta)
                         isPresented = false
                     }
@@ -48,10 +48,4 @@ struct AddProductoView: View {
     
 }
 
-extension Double {
-    func rounded(toPlaces places: Int) -> Double {
-        let divisor = pow(10.0, Double(places))
-        return (self * divisor).rounded() / divisor
-    }
-}
 

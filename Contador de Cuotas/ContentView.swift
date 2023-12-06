@@ -11,7 +11,7 @@ struct ContentView: View {
     @ObservedObject var viewModel = MainViewModel()
     @State private var showingAddProductoView = false
 
-    var totalPorMes: Double {
+    var totalPorMes: Int {
         viewModel.calcularTotalPorMes()
     }
 
@@ -27,10 +27,14 @@ struct ContentView: View {
                                 Text("Cuotas restantes: \(producto.cuotasRestantes)")
                                 Text("Precio por cuota: \(producto.precioPorCuota)")
                             }
+                        }.swipeActions {
+                            Button("Eliminar", role: .destructive) {
+                                viewModel.eliminarProducto(producto: producto)
+                            }
                         }
                     }
                 }.id(UUID())
-                .navigationTitle("Productos")
+                .navigationTitle("CuotApp")
                 .navigationBarItems(trailing:
                     Button(action: {
                         showingAddProductoView.toggle()
@@ -42,15 +46,21 @@ struct ContentView: View {
                 Spacer()
 
                 HStack {
-                    Text("Total a pagar este mes: ")
+                    Text("A pagar este mes:")
                         .font(.headline)
-                    Text("\(totalPorMes, specifier: "%.2f")")
+                    
+                    Spacer()
+                    
+                    Text("\(totalPorMes)")        
                         .foregroundColor(.blue)
                         .font(.headline)
+
+                    Spacer()
+                    
                     Button(action: {
                         restarCuotas()
                     }) {
-                        Text("Restar 1 a todas las cuotas")
+                        Text("Pagar Mes")
                             .foregroundColor(.red)
                     }
                 }
@@ -61,6 +71,10 @@ struct ContentView: View {
             .sheet(isPresented: $showingAddProductoView) {
                 AddProductoView(viewModel: viewModel, isPresented: $showingAddProductoView)
             }
+        }.onReceive(NotificationCenter.default
+            .publisher(for: UIApplication.willResignActiveNotification)) { _ in
+            // Este bloque se ejecutará cuando la aplicación esté a punto de pasar a segundo plano o cerrarse
+            viewModel.guardarProductos()
         }
     }
 
