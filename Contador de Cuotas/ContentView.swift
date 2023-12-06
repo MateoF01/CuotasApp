@@ -55,6 +55,8 @@ struct ContentView: View {
                     }
                 }
                 .padding()
+            }.onAppear{
+                viewModel.cargarProductos()
             }
             .sheet(isPresented: $showingAddProductoView) {
                 AddProductoView(viewModel: viewModel, isPresented: $showingAddProductoView)

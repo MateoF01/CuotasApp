@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Producto: Identifiable {
+class Producto: Identifiable, Codable {
     var id = UUID()
     var nombre: String
     var cuotasRestantes: Int

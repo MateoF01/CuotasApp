@@ -14,6 +14,7 @@
 		A275D33F2B1F5FB2009CC871 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275D33E2B1F5FB2009CC871 /* Models.swift */; };
 		A275D3412B1F5FD5009CC871 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275D3402B1F5FD5009CC871 /* ViewModel.swift */; };
 		A275D3452B1F6408009CC871 /* AddProductoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275D3442B1F6408009CC871 /* AddProductoView.swift */; };
+		A2AFF6042B20C9E0009E778C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AFF6032B20C9E0009E778C /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		A275D33E2B1F5FB2009CC871 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		A275D3402B1F5FD5009CC871 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		A275D3442B1F6408009CC871 /* AddProductoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductoView.swift; sourceTree = "<group>"; };
+		A2AFF6032B20C9E0009E778C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				A275D33E2B1F5FB2009CC871 /* Models.swift */,
 				A275D3402B1F5FD5009CC871 /* ViewModel.swift */,
 				A275D3442B1F6408009CC871 /* AddProductoView.swift */,
+				A2AFF6032B20C9E0009E778C /* DataManager.swift */,
 			);
 			path = "Contador de Cuotas";
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A275D33F2B1F5FB2009CC871 /* Models.swift in Sources */,
+				A2AFF6042B20C9E0009E778C /* DataManager.swift in Sources */,
 				A275D3452B1F6408009CC871 /* AddProductoView.swift in Sources */,
 				A275D3132B1F5B6F009CC871 /* ContentView.swift in Sources */,
 				A275D3412B1F5FD5009CC871 /* ViewModel.swift in Sources */,

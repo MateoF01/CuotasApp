@@ -10,9 +10,16 @@ import Foundation
 class MainViewModel: ObservableObject {
     @Published var productos: [Producto] = []
 
+    func cargarProductos () {
+        let productosCargados = DataManager.shared.cargarProductos()
+        productos = productosCargados
+    }
+
     func agregarProducto(nombre: String, cuotasRestantes: Int, precioPorCuota: Double, nombreTarjeta: String) {
         let nuevoProducto = Producto(nombre: nombre, cuotasRestantes: cuotasRestantes, precioPorCuota: precioPorCuota, nombreTarjeta: nombreTarjeta)
         productos.append(nuevoProducto)
+        
+        DataManager.shared.guardarProductos(productos)
     }
 
     func calcularTotalPorMes() -> Double {
@@ -38,6 +45,8 @@ class MainViewModel: ObservableObject {
         }
 
         productos = nuevosProductos
+        DataManager.shared.guardarProductos(productos)
+
     }
 }
 
